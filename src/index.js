@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));   // index.html me ek div hai root id ka uske ander App component ko apply kardo
 root.render(
   <React.StrictMode>
     <App />
