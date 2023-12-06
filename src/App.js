@@ -5,20 +5,19 @@
 
 // import { useState } from 'react';
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 
 
-// import { 
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-//   } from 'react-router-dom';
+import { 
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  } from 'react-router-dom';
 
 
-// Throgh this we are trying to control the Navbar with App.js
 import React, { useState } from 'react';
 
 function App() {
@@ -35,7 +34,19 @@ function App() {
     }, 2000);
   }
 
-  const toggleMode =()=>{
+  const removeBodyClasses = () => {
+  document.body.classList.remove('bg-light')
+  document.body.classList.remove('bg-dark')
+  document.body.classList.remove('bg-warning')
+  document.body.classList.remove('bg-danger')
+  document.body.classList.remove('bg-success')
+  document.body.classList.remove('bg-primary')
+  }
+
+  const toggleMode = (cls) => {
+    removeBodyClasses();   // saare backgroun color remove kar diya
+    console.log(cls)
+    document.body.classList.add('bg-'+cls)   // jo class hum denge wo add ho jayega
     if(mode === 'light'){
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
@@ -60,25 +71,25 @@ function App() {
   return (
     <>
        {/* <Navbar title="TextUtils" aboutText="About "/> */}
-       {/* <Router> */}
+       <Router>
 
        <Navbar title="TextUtils" aboutText="About " mode={mode} toggleMode={toggleMode}/>
        <Alert alert={alert}/>
     
        <div className="container my-3">
-       {/* <Routes> */}
+       <Routes>
           {/* Use exact path instead of only path as react can partial math with some other components whose path is mathcing approx with the desired comp and show the other component in display */}
-          {/* <Route exact path="/about" element={<About mode={mode}/>}>
-          </Route> */}
+          <Route exact path="/about" element={<About mode={mode}/>}>
+          </Route>
 
-          {/* <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode}/>}>
-          </Route> */}
-        <TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode}/>
+          <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode}/>}>
+          </Route>
+        {/* <TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode}/> */}
           
-        {/* </Routes>         */}
+        </Routes>      
        </div>
       
-       {/* </Router> */}
+       </Router>
   </>
   );
 }
